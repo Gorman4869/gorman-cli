@@ -20,22 +20,9 @@ function inquirerPrompt(argv){
                 }
             },
             {
-                type:'list',
-                name:'type',
-                message: '模板类型',
-                choices: ['表单', '动态表单', '嵌套表单'],
-                filter: function (value) {
-                  return {
-                    '表单': "form",
-                    '动态表单': "dynamicForm",
-                    '嵌套表单': "nestedForm",
-                  }[value];
-                },
-            },
-            {
                 type: 'list',
                 message: '使用什么框架开发',
-                choices: ['vue', 'vue3'],
+                choices: ['vue2', 'vue3'],
                 name: 'frame',
             },
             {
@@ -47,13 +34,14 @@ function inquirerPrompt(argv){
             }
         ]).then(answers=>{
             const {frame} = answers;
-            if(frame === 'vue'){
+            if(frame === 'vue2'){
                 inquirer.prompt([
                     {
                         type: 'list',
                         message: '使用什么UI组件库开发',
                         choices: [
-                          'Ant Design',
+                          'Ant Design Vue',
+                          'Element'
                         ],
                         name: 'library',
                     }
@@ -72,7 +60,7 @@ function inquirerPrompt(argv){
                   {
                     type: 'list',
                     message: '使用什么UI组件库开发',
-                    choices: [ 'Element'],
+                    choices: [ 'Ant Design Vue@4.x','Element'],
                     name: 'library',
                   }
                 ]).then(answers2 => {
